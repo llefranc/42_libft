@@ -2,7 +2,7 @@
 
 "Your very first own library"
 
-![Alt text](https://github.com/lucaslefrancq/libft/blob/master/libft_example.png)
+![Alt text](https://github.com/lucaslefrancq/libft/blob/main/libft_example.png)
 
 ## About
 
