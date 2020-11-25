@@ -1,4 +1,4 @@
-# Libft (@42Paris)
+# Libft (@42Born2Code)
 
 "Your very first own library"
 
