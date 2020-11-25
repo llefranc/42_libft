@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llefranc <llefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 10:50:08 by llefranc          #+#    #+#             */
-/*   Updated: 2019/11/21 12:20:04 by llefranc         ###   ########.fr       */
+/*   Created: 2019/11/20 12:53:18 by llefranc          #+#    #+#             */
+/*   Updated: 2019/11/21 12:22:27 by llefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*str;
-	size_t	i;
-	size_t	lentemp;
+	t_list	*first;
+	t_list	*newlst;
+	t_list	*temp;
 
-	i = 0;
-	lentemp = 0;
-	if (!s)
+	first = NULL;
+	newlst = NULL;
+	temp = NULL;
+	if (!del)
 		return (NULL);
-	while (s[i])
-		i++;
-	i = (i < start) ? 1 : 0;
-	while (!i && s[start + lentemp] && lentemp < len)
-		lentemp++;
-	if (!(str = malloc(sizeof(*str) * (lentemp + 1))))
+	if (!(first = ft_lstnew((*f)(lst->content))))
 		return (NULL);
-	while (i < lentemp && s[(size_t)start + i])
+	temp = first;
+	lst = lst->next;
+	while (lst && f)
 	{
-		str[i] = s[(size_t)start + i];
-		i++;
+		if (!(newlst = ft_lstnew((*f)(lst->content))))
+		{
+			ft_lstclear(&first, del);
+			return (NULL);
+		}
+		temp->next = newlst;
+		temp = newlst;
+		lst = lst->next;
 	}
-	if (!lentemp)
-		str[0] = 0;
-	else
-		str[i] = 0;
-	return (str);
+	return (first);
 }

@@ -6,13 +6,13 @@
 /*   By: llefranc <llefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 18:14:06 by llefranc          #+#    #+#             */
-/*   Updated: 2020/02/05 19:30:14 by llefranc         ###   ########.fr       */
+/*   Updated: 2019/11/15 12:08:41 by llefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*mallocstr(unsigned long temp, unsigned long *len)
+char	*mallocstr(unsigned int temp, unsigned int *len)
 {
 	char *str;
 
@@ -28,11 +28,11 @@ char	*mallocstr(unsigned long temp, unsigned long *len)
 	return (str);
 }
 
-char	*ft_itoa(long n)
+char	*ft_itoa(int n)
 {
 	char			*str;
-	unsigned long	temp;
-	unsigned long	len;
+	unsigned int	temp;
+	unsigned int	len;
 
 	len = 1;
 	temp = n;

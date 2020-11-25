@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_buffer.c                                   :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llefranc <llefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 18:14:06 by llefranc          #+#    #+#             */
-/*   Updated: 2020/02/05 19:30:06 by llefranc         ###   ########.fr       */
+/*   Created: 2019/11/20 11:57:32 by llefranc          #+#    #+#             */
+/*   Updated: 2019/11/20 15:05:48 by llefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_itoa_buffer(long n, char *buffer)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	unsigned long	temp;
-	unsigned long	temp2;
-	unsigned long	len;
+	t_list	*temp;
 
-	len = 0;
-	temp = n;
-	if (n < 0)
+	temp = NULL;
+	if (lst && del)
 	{
-		len++;
-		temp = -n;
-		buffer[0] = '-';
+		while (*lst)
+		{
+			(*del)((*lst)->content);
+			temp = (*lst)->next;
+			(*lst)->next = NULL;
+			free(*lst);
+			*lst = temp;
+		}
 	}
-	temp2 = temp;
-	while (temp2 > 9)
-	{
-		temp2 /= 10;
-		len++;
-	}
-	while (temp > 9)
-	{
-		buffer[len--] = (temp % 10) + 48;
-		temp /= 10;
-	}
-	buffer[len] = temp + 48;
-	return (buffer);
 }

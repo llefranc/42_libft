@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_buffer_uns.c                               :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llefranc <llefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/14 18:14:06 by llefranc          #+#    #+#             */
-/*   Updated: 2020/02/05 19:30:01 by llefranc         ###   ########.fr       */
+/*   Created: 2019/11/18 18:05:53 by llefranc          #+#    #+#             */
+/*   Updated: 2019/11/25 13:09:47 by llefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_itoa_buffer_uns(unsigned long n, char *buffer)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	unsigned long	temp;
-	unsigned long	temp2;
-	unsigned long	len;
-
-	len = 0;
-	temp = n;
-	temp2 = temp;
-	while (temp2 > 9)
+	if (!alst)
+		return ;
+	if (!(*alst))
+		*alst = new;
+	else
 	{
-		temp2 /= 10;
-		len++;
+		while ((*alst)->next)
+			alst = &(*alst)->next;
+		(*alst)->next = new;
 	}
-	while (temp > 9)
-	{
-		buffer[len--] = (temp % 10) + 48;
-		temp /= 10;
-	}
-	buffer[len] = temp + 48;
-	return (buffer);
 }

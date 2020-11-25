@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_replace_char.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llefranc <llefranc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 11:44:04 by llefranc          #+#    #+#             */
-/*   Updated: 2020/02/06 15:52:24 by llefranc         ###   ########.fr       */
+/*   Created: 2019/11/18 17:54:07 by llefranc          #+#    #+#             */
+/*   Updated: 2019/11/20 15:07:56 by llefranc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_replace_char(char *str, char new, char prev)
+int		ft_lstsize(t_list *lst)
 {
 	int i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
+	while (lst)
 	{
-		if (str[i] == prev)
-			str[i] = new;
 		i++;
+		lst = lst->next;
 	}
-	return (str);
+	return (i);
 }
